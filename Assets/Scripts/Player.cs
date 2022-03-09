@@ -38,8 +38,11 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-        GameManager.GM.playerHit();
-        Destroy(this.gameObject, 0.7f);
+        if (collision.gameObject.tag.Equals("EnemyBullet"))
+        {
+            this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            GameManager.GM.playerHit();
+            Destroy(this.gameObject, 0.7f);
+        }
     }
 }

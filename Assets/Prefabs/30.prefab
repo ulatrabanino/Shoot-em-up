@@ -125,10 +125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405c5eaa044c9b9478ea59ddf422f635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 2457785739244962049, guid: 2192e892ddd1b1e4eb4165969c6236c1, type: 3}
+  bullet: {fileID: 2457785739244962049, guid: 3309ebcc66e7ef94b8c1c255854425f9, type: 3}
   shootingOffset: {fileID: 206429150814799115}
   life: 1
-  points: 10
+  points: 30
 --- !u!1 &2841123204727813363
 GameObject:
   m_ObjectHideFlags: 0

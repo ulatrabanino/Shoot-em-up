@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text hiscoretxt;
 
     private int score = 0;
-    private static int highscore = 0;
+    private int highscore = 0;
     private int lives = 3;
 
     private bool gameStarting = false;
@@ -39,6 +39,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        PlayerPrefs.SetInt("highscore", highscore);
+        PlayerPrefs.Save();
+    }
+
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (this == null)
@@ -57,7 +63,7 @@ public class GameManager : MonoBehaviour
             this.livestxt.text = lives.ToString();
             this.scoretxt.text = score.ToString("D4");
 
-            //InstantiateBarricade();
+            InstantiateBarricade();
 
             enemyManager.Instantiate();
             StartCoroutine("spawnRare");
@@ -77,17 +83,19 @@ public class GameManager : MonoBehaviour
     private void InstantiatePlayer()
     {
         respawn = GameObject.Instantiate(ship, transform);
-        respawn.transform.localPosition = new Vector3(10, -1, 0);
+        respawn.transform.localPosition = new Vector3(0f, -4.3f, -1f);
     }
-    /*
+    
     private void InstantiateBarricade()
     {
-        for (int i = 0; i < 4; i++)
+        float[] nums = new float[] { -8, -4, 0, 4, 8 };
+        for (int i = 0; i <= 4; i++)
         {
+            float temp = nums[i];
             GameObject newBarricade = GameObject.Instantiate(barricade, transform);
-            newBarricade.transform.localPosition = new Vector3(i * 5, 3, 0);
+            newBarricade.transform.localPosition = new Vector3(temp, -3f, 0);
         }
-    }*/
+    }
 
     IEnumerator spawnRare()
     {
@@ -103,6 +111,8 @@ public class GameManager : MonoBehaviour
 
     void gameStart()
     {
+        highscore = PlayerPrefs.GetInt("highscore", highscore);
+        this.hiscoretxt.text = highscore.ToString("D4");
         gameStarting = true;
         SceneManager.LoadScene("Game");
         Debug.Log("game start");
@@ -130,12 +140,17 @@ public class GameManager : MonoBehaviour
     {
         lives = 3;
         Debug.Log("game over");
+        if (score > highscore)
+        {
+            highscore = score;
+        }
+        this.hiscoretxt.text = highscore.ToString("D4");
         enemyManager.Clear();
-        /*var items = GameObject.FindGameObjectsWithTag("Barricade");
+        var items = GameObject.FindGameObjectsWithTag("Barricade");
         foreach (var item in items)
         {
             Destroy(item);
-        }*/
+        }
 
 
         StopCoroutine("spawnRare");
