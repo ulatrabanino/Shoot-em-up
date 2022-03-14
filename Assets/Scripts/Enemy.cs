@@ -10,12 +10,24 @@ public class Enemy : MonoBehaviour
     public int life = 1;
     public int points = 10;
 
+    Animator m_Animator;
+
+    private void Start()
+    {
+        m_Animator = gameObject.GetComponent<Animator>();
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("Ouch!");
         if (collision.gameObject.tag.Equals("Bullet"))
         {
             life--;
+            if(!this.gameObject.tag.Equals("rare")){
+                m_Animator.SetTrigger("Explode");
+            }
+            
+            StartCoroutine("dieEnemy");
         }
 
         if (life == 0)
@@ -25,16 +37,22 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    IEnumerator dieEnemy()
+    {
+        yield return new WaitForSeconds(5f);
+    }
+
     public void Attack()
     {
         if (checkPath() || !this.gameObject.tag.Equals("canFire"))
         {
             return;
         }
-
+        m_Animator.SetTrigger("Shoot");
         GameObject shot = Instantiate(bullet, shootingOffset.position, Quaternion.identity);
         shot.GetComponent<Bullet>().speed *= -1;
-        Destroy(shot, 1f);
+        Destroy(shot, 3f);
+        m_Animator.ResetTrigger("Shoot");
     }
 
     public void moveForward(int x, int y, float speed)

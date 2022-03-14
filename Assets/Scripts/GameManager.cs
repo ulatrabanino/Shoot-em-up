@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift) && !gameStarting) gameStart();
     }
 
-    void gameStart()
+    public void gameStart()
     {
         highscore = PlayerPrefs.GetInt("highscore", highscore);
         this.hiscoretxt.text = highscore.ToString("D4");
@@ -139,6 +139,7 @@ public class GameManager : MonoBehaviour
     public void gameOver()
     {
         lives = 3;
+        StartCoroutine("CreditsRoll");
         Debug.Log("game over");
         if (score > highscore)
         {
@@ -160,4 +161,15 @@ public class GameManager : MonoBehaviour
             Destroy(respawn);
         }
     }
+    IEnumerator CreditsRoll()
+    {
+        SceneManager.LoadScene("Credits");
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManager.LoadScene("Menu");
+        }
+        yield return new WaitForSeconds(10f);
+
+    }
+
 }

@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Barricade
+  - Enemy
+  - canFire
+  - rare
+  - Bullet
+  - EnemyBullet
+  - Game manager
+  - Enemy manager
+  - score
+  - life
+  - hiscore
   layers:
   - Default
   - TransparentFX

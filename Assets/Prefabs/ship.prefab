@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8191323368068252525}
   - component: {fileID: 8191323368068252524}
   - component: {fileID: 8191323368068252515}
+  - component: {fileID: 574985800755941020}
   m_Layer: 0
   m_Name: ship
   m_TagString: Untagged
@@ -128,6 +129,26 @@ MonoBehaviour:
   bullet: {fileID: 2457785739244962049, guid: 2192e892ddd1b1e4eb4165969c6236c1, type: 3}
   speed: 1
   shottingOffset: {fileID: 8191323368805664575}
+--- !u!95 &574985800755941020
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8191323368068252526}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8191323368805664574
 GameObject:
   m_ObjectHideFlags: 0
